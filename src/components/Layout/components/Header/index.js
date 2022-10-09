@@ -27,7 +27,7 @@ function Header() {
           <span></span>
           <button className={cx('search-btn')}>
             <FontAwesomeIcon
-              className={cx('loading')}
+            className={cx('search-icon')}
               icon={faMagnifyingGlass}
             />
           </button>
