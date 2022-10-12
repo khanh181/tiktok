@@ -12,6 +12,7 @@ import {
   faSpinner,
   faMagnifyingGlass,
   faSignIn,
+  faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
 
@@ -62,10 +63,28 @@ function Header() {
           </div>
         </Tippy>
         <div className={cx('actions')}>
-          <Button text>
-            Upload
+          <Button text>Upload</Button>
+          <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
+            Login
           </Button>
-          <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />} >Login</Button>
+          <Tippy
+            interactive
+            visible
+            render={(atrrs) => (
+              <div className={cx('menu-items')} tabIndex="-1" {...atrrs}>
+                <PopperWrapper>
+                  <h4 className={cx('search-title')}>Account</h4>
+                  <AccountItem />
+                  <AccountItem />
+                  <AccountItem />
+                </PopperWrapper>
+              </div>
+            )}
+          >
+            <button className={cx('more-btn')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Tippy>
         </div>
       </div>
     </header>
