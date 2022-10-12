@@ -69,7 +69,7 @@ function Header() {
           </Button>
           <Tippy
             interactive
-            visible
+            placement="bottom-end"
             render={(atrrs) => (
               <div className={cx('menu-items')} tabIndex="-1" {...atrrs}>
                 <PopperWrapper>
