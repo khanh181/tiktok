@@ -11,6 +11,7 @@ import {
   faCircleXmark,
   faSpinner,
   faMagnifyingGlass,
+  faSignIn,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
 
@@ -61,8 +62,10 @@ function Header() {
           </div>
         </Tippy>
         <div className={cx('actions')}>
-          <Button text>Upload</Button>
-          <Button primary >Login</Button>
+          <Button text>
+            Upload
+          </Button>
+          <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />} >Login</Button>
         </div>
       </div>
     </header>

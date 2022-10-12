@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
-import { info } from 'sass';
+// import { info } from 'sass';
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +15,11 @@ function Button({
   small = false,
   text = false,
   disabled = false,
+  rounder = false,
   children,
+  className,
   onClick,
+  leftIcon,
   ...passProps
 }) {
   let Comp = 'button';
@@ -25,9 +28,13 @@ function Button({
     onClick,
     ...passProps,
   };
-
+  // ! remover listener when event disabled
   if (disabled) {
-    delete props.onClick;
+    Object.keys(props).forEach((key) => {
+      if (key.startsWith('on') && typeof props[key] === 'function') {
+        delete props[key];
+      }
+    });
   }
 
   if (to) {
@@ -45,12 +52,15 @@ function Button({
     large,
     text,
     disabled,
+    rounder,
+    [className] : className,
   });
 
   return (
     //? cái span này dùng để dễ thêm icons đằng trước hoặc sau ( nếu có)
     <Comp className={classes} {...props}>
-      <span>{children}</span>
+      {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+      <span className={cx('title')}>{children}</span>
     </Comp>
   );
 }

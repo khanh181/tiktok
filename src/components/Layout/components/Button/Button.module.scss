@@ -1,4 +1,7 @@
 .wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 4px;
   border: 1px solid transparent;
   min-width: 100px;
@@ -15,17 +18,35 @@
     margin-left: 8px;
   }
 
+  //todo disabled
   &.disabled {
     pointer-events: none;
     opacity: 0.4;
-
   }
 }
 
+//todo icon
+.icon + .title,
+.title + .icon {
+  margin-left: 8px;
+}
+
 //todo button types
+.rounder {
+  border-radius: 9999px;
+  border-color: rgba(22, 24, 35, 0.12);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+
+  &:hover {
+    border-color: #d3d4d6;
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
 .primary {
   background-color: var(--primary) !important;
   color: var(--white) !important;
+  border-color: var(--primary);
 
   &:hover {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
@@ -37,6 +58,7 @@
   color: var(--primary) !important;
 
   &:hover {
+    border-color: currentColor;
     background-color: rgba(254, 44, 85, 0.06);
   }
 }
@@ -49,7 +71,6 @@
     text-decoration: underline;
   }
 }
-//todo disabled
 
 //todo Button sizes
 .small {
