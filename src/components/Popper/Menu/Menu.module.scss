@@ -1,4 +1,23 @@
-//? menu
-.content{
-  width: 224px;
+//? menu wrapper
+.menu-lists {
+  width: 250px;
+
+  .menu-item {
+    margin-left: 0;
+  }
+}
+
+.menu-popper {
+  padding: 5px 0;
+
+  :hover {
+    background: rgba(22, 24, 35, 0.03);
+  }
+}
+//? menu item
+.menu-item {
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 0;
+  padding: 11px 16px;
 }

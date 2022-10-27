@@ -13,11 +13,32 @@ import {
   faMagnifyingGlass,
   faSignIn,
   faEllipsisVertical,
+  faGlobe,
+  faKeyboard,
+  faCircleQuestion,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
+import Menu from '~/components/Popper/Menu';
 
 //! giups bind cái obj styles rồi trả ra med là 1 function là cái cx và dùng cx để dùng class, và tên nó tự biến thành -
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faGlobe} />,
+    title: 'Tiếng Việt',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: 'Phản hồi và trợ giúp',
+    to: '/feefback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Phím tắt trên bàn phím',
+    to: '',
+  },
+];
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -67,24 +88,11 @@ function Header() {
           <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
             Login
           </Button>
-          <Tippy
-            interactive
-            placement="bottom-end"
-            render={(atrrs) => (
-              <div className={cx('menu-items')} tabIndex="-1" {...atrrs}>
-                <PopperWrapper>
-                  <h4 className={cx('search-title')}>Account</h4>
-                  <AccountItem />
-                  <AccountItem />
-                  <AccountItem />
-                </PopperWrapper>
-              </div>
-            )}
-          >
+          <Menu items={[MENU_ITEMS]}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
-          </Tippy>
+          </Menu>
         </div>
       </div>
     </header>
