@@ -5,24 +5,35 @@ import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ data }) {
-  // const title = data.map((item) => <div>{item.title}</div>);
-  // const icon = data.map((item) => <div>{item.icon}</div>);
-  // return <Button leftIcon={icon}>{title}</Button>;
+function MenuItem({ data, onClick }) {
+  const classes = cx('menu-item', {
+    separate: data.separate,
+  });
   return (
-    <Fragment>
-      {data.map((item, index) => (
-        <Button
-          className={cx('menu-item')}
-          key={index}
-          leftIcon={item.icon}
-          to={item.to}
-        >
-          {item.title}
-        </Button>
-      ))}
-    </Fragment>
+    <Button
+      className={classes}
+      leftIcon={data.icon}
+      to={data.to}
+      onClick={onClick}
+    >
+      {data.title}
+    </Button>
   );
+  // return (
+  //   <Fragment>
+  //     {data.map((item, index) => (
+  //       <Button
+  //         className={cx('menu-item')}
+  //         key={index}
+  //         leftIcon={item.icon}
+  //         to={item.to}
+  //         onClick={console.log('onClick')}
+  //       >
+  //         {item.title}
+  //       </Button>
+  //     ))}
+  //   </Fragment>
+  // );
 }
 
 export default MenuItem;
