@@ -8,7 +8,9 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [] }) {
+const defaultFn = () => {};
+
+function Menu({ children, items = [], onChange = defaultFn }) {
   const [history, setHistory] = useState([{ data: items }]); //! obj bên trong là cái children trong MENU_ITEMS
   const current = history[history.length - 1];
 
@@ -22,8 +24,9 @@ function Menu({ children, items = [] }) {
           data={item}
           onClick={() => {
             if (isParent) {
-              console.log(item.children);
               setHistory((prve) => [...prve, item.children]);
+            } else {
+              onChange(item);
             }
           }}
         />

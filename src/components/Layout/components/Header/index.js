@@ -23,22 +23,30 @@ import Menu from '~/components/Popper/Menu';
 //! giups bind cái obj styles rồi trả ra med là 1 function là cái cx và dùng cx để dùng class, và tên nó tự biến thành -
 const cx = classNames.bind(styles);
 
+//handle logic
+const handleMenuChange = (MenuItem) => {
+  console.log(MenuItem);
+};
+
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faGlobe} />,
     title: 'Tiếng Việt',
-    childern: {
+    children: {
       title: 'Language',
       data: [
         {
+          type: 'Language',
           code: 'en',
           title: 'English',
         },
         {
+          type: 'Language',
           code: 'vi',
           title: 'Vietnamese',
         },
         {
+          type: 'Language',
           code: 'Jp',
           title: 'Japaness',
         },
@@ -105,7 +113,7 @@ function Header() {
           <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
             Login
           </Button>
-          <Menu items={[MENU_ITEMS]}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
