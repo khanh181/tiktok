@@ -110,29 +110,33 @@
     background-color: rgba(22, 24, 35, 0.06);
   }
 }
+//actions
 .actions {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+}
+.action-btn {
+  font-size: 2.2rem;
+  background-color: #fff;
+  color: #161823;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 15px;
 }
 .more-btn {
   font-size: 2.5rem;
   margin-left: 25px;
   padding: 4px 8px;
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
 }
 
 .loading {
   display: none;
-}
-
-button,
-input,
-[tabindex] {
-  outline: none;
-  border: none;
-}
-a[href] {
-  color: var(--text-color);
-  text-decoration: none;
 }

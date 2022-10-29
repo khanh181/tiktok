@@ -10,6 +10,10 @@
 .menu-popper {
   padding: 5px 0;
 
+  .separate {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+  }
+
   :hover {
     background: rgba(22, 24, 35, 0.03);
   }
