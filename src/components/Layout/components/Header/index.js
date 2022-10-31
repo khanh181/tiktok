@@ -1,13 +1,14 @@
 import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Wapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '../AccountItem';
 import 'tippy.js/dist/tippy.css';
+import { SendMessageIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import images from '~/assets/imgs';
+import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
@@ -26,6 +27,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
 import Menu from '~/components/Popper/Menu';
+import Image from '~/components/Image';
 
 //! giups bind cái obj styles rồi trả ra med là 1 function là cái cx và dùng cx để dùng class, và tên nó tự biến thành -
 const cx = classNames.bind(styles);
@@ -145,18 +147,28 @@ function Header() {
 
         <div className={cx('actions')}>
           {currentUser ? (
-            <Tippy delay={(0, 200)} content="Upload Video" placement="bottom">
-              <button>
-                <FontAwesomeIcon
-                  className={cx('action-btn')}
-                  icon={faCloudUpload}
-                />
-                {/* <FontAwesomeIcon
-                  className={cx('action-btn')}
-                  icon={faMessage}
-                /> */}
-              </button>
-            </Tippy>
+            <Fragment>
+              <Tippy delay={(0, 200)} content="Upload Video" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <UploadIcon icon={faCloudUpload} />
+                </button>
+              </Tippy>
+              <Tippy delay={(0, 200)} content="Send Message" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <SendMessageIcon />
+                </button>
+              </Tippy>
+              <Tippy
+                delay={(0, 200)}
+                content="You have message"
+                placement="bottom"
+              >
+                <button className={cx('action-btn')}>
+                  <MessageIcon />
+                  <span className={cx('badge')}>12</span>
+                </button>
+              </Tippy>
+            </Fragment>
           ) : (
             <>
               <Button text>Upload</Button>
@@ -170,11 +182,12 @@ function Header() {
             onChange={handleMenuChange}
           >
             {currentUser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
                 alt=""
                 src="https://znews-photo.zingcdn.me/w660/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Huy_Binh1.jpg"
-              ></img>
+                fallback="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
+              />
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />

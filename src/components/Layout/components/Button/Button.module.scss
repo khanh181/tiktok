@@ -6,10 +6,12 @@
   border: 1px solid transparent;
   min-width: 100px;
 
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
   padding: 8px 16px;
 
+  color: var(--text-color);
   cursor: pointer;
   background-color: var(--white);
   user-select: none;
