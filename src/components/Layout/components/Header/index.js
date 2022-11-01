@@ -1,8 +1,5 @@
-import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
-import { useState, useEffect, Fragment } from 'react';
-import { Wapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '../AccountItem';
+import { Fragment } from 'react';
 import 'tippy.js/dist/tippy.css';
 import { SendMessageIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 
@@ -11,9 +8,6 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCircleXmark,
-  faSpinner,
-  faMagnifyingGlass,
   faSignIn,
   faEllipsisVertical,
   faGlobe,
@@ -25,6 +19,8 @@ import {
   faGear,
   faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
+
+import Search from '../Search';
 import Button from '../Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
@@ -75,15 +71,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
-
   const currentUser = true;
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    }, 0);
-  }, []);
 
   const userMenu = [
     {
@@ -116,34 +104,8 @@ function Header() {
         <div className={cx('logo')}>
           <img src={images.logo} alt="Tiktok" />
         </div>
-        <HeadlessTippy
-          interactive
-          visible={searchResult.length > 0}
-          render={(atrrs) => (
-            <div className={cx('search-result')} tabIndex="-1" {...atrrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Account</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input
-              placeholder="Search video and account..."
-              spellCheck={false}
-            />
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-              <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-            </button>
-            <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </div>
-        </HeadlessTippy>
+
+        <Search />
 
         <div className={cx('actions')}>
           {currentUser ? (
