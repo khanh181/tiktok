@@ -13,6 +13,8 @@ import {
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { useDebounce } from '~/hooks';
+
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -21,11 +23,13 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const debounce = useDebounce(searchValue, 500);
+
   const inputRef = useRef();
 
   useEffect(() => {
     //? dù có nhấn dấu cách thì cũng k bị trả về rỗng
-    if (!searchValue.trim()) {
+    if (!debounce.trim()) {
       setSearchResult([]); //? xóa hết kí tự thì cũng xóa hết cái tìm kiếm
       return;
     }
@@ -35,7 +39,7 @@ function Search() {
     //? cái ở dưới dùng encodeURIComponent là mã hóa kí tự nhập vào để tránh bị trùng
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        searchValue,
+        debounce,
       )}&type=less`,
     )
       .then((res) => res.json())
@@ -46,7 +50,7 @@ function Search() {
       .catch(() => {
         setLoading(false); //? để catch vì khi mất mạng hay load chậm thì cũng để hiện dấu này
       });
-  }, [searchValue]);
+  }, [debounce]);
 
   const handleClear = () => {
     setSearchValue('');
