@@ -4,11 +4,16 @@
   --search-space: 5px;
   --search-right: 49px;
 
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: var(--default-layout-header-height, 60px);
+  height: var(--default-layout-header-height);
   display: flex;
   justify-content: center;
   box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+  background-color: var(--white);
+  z-index: 10;
 }
 .inner {
   height: 100%;
