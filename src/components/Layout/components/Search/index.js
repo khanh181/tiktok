@@ -1,6 +1,7 @@
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '../AccountItem';
+import * as searchService from '~/apiServices/searchServices';
 
 import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
@@ -23,34 +24,28 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const debounce = useDebounce(searchValue, 500);
+  const debounced = useDebounce(searchValue, 500);
 
   const inputRef = useRef();
 
   useEffect(() => {
     //? dù có nhấn dấu cách thì cũng k bị trả về rỗng
-    if (!debounce.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([]); //? xóa hết kí tự thì cũng xóa hết cái tìm kiếm
       return;
     }
+    const fetchApi = async () => {
+      setLoading(true)
 
-    setLoading(true);
+      const results = await searchService.search(debounced);
+      setSearchResult(results)
 
-    //? cái ở dưới dùng encodeURIComponent là mã hóa kí tự nhập vào để tránh bị trùng
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounce,
-      )}&type=less`,
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false); //? để catch vì khi mất mạng hay load chậm thì cũng để hiện dấu này
-      });
-  }, [debounce]);
+      setLoading(false)
+
+    };
+
+    fetchApi();
+  }, [debounced]);
 
   const handleClear = () => {
     setSearchValue('');
