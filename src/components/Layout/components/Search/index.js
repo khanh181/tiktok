@@ -35,13 +35,12 @@ function Search() {
       return;
     }
     const fetchApi = async () => {
-      setLoading(true)
+      setLoading(true);
 
       const results = await searchService.search(debounced);
-      setSearchResult(results)
+      setSearchResult(results);
 
-      setLoading(false)
-
+      setLoading(false);
     };
 
     fetchApi();
@@ -55,6 +54,13 @@ function Search() {
 
   const handlleHideResult = () => {
     setShowResult(false);
+  };
+
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(e.target.value);
+    }
   };
 
   return (
@@ -79,7 +85,7 @@ function Search() {
           value={searchValue}
           placeholder="Search video and account..."
           spellCheck={false}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleChange}
           onFocus={() => setShowResult(true)}
         />
         {!!searchValue && !loading && (
@@ -90,7 +96,10 @@ function Search() {
         {loading && (
           <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
         )}
-        <button className={cx('search-btn')}>
+        <button
+          className={cx('search-btn')}
+          onMouseDown={(e) => e.preventDefault()}
+        >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </div>

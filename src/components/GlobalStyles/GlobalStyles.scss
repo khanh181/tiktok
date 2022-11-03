@@ -6,6 +6,7 @@
   --black: #000;
   --text-color: #333;
   --white: #fff;
+  --font-primary: 'IBM Plex Sans', sans-serif;
 
   //? default layout
   --default-layout-header-height: 60px;
@@ -23,7 +24,7 @@ html {
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;

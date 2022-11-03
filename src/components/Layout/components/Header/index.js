@@ -1,12 +1,12 @@
 import Tippy from '@tippyjs/react';
 import { Fragment } from 'react';
 import 'tippy.js/dist/tippy.css';
-import { SendMessageIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import { Link } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSignIn,
   faEllipsisVertical,
@@ -20,10 +20,12 @@ import {
   faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { SendMessageIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 import Search from '../Search';
 import Button from '../Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
+import routersConfig from '~/config/routes';
 
 //! giups bind cái obj styles rồi trả ra med là 1 function là cái cx và dùng cx để dùng class, và tên nó tự biến thành -
 const cx = classNames.bind(styles);
@@ -102,7 +104,9 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         <div className={cx('logo')}>
-          <img src={images.logo} alt="Tiktok" />
+          <Link to={routersConfig.home} className={cx('logo-link')}>
+            <img src={images.logo} alt="Tiktok" />
+          </Link>
         </div>
 
         <Search />
