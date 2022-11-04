@@ -1,5 +1,5 @@
 import HeadlessTippy from '@tippyjs/react/headless';
-import { Wapper as PopperWrapper } from '~/components/Popper';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '../AccountItem';
 import * as searchService from '~/services/searchServices';
 
@@ -52,7 +52,7 @@ function Search() {
     inputRef.current.focus();
   };
 
-  const handlleHideResult = () => {
+  const handleHideResult = () => {
     setShowResult(false);
   };
 
@@ -80,7 +80,7 @@ function Search() {
             </PopperWrapper>
           </div>
         )}
-        onClickOutside={handlleHideResult}
+        onClickOutside={handleHideResult}
       >
         <div className={cx('search')}>
           <input
