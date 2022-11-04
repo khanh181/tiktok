@@ -1,7 +1,7 @@
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '../AccountItem';
-import * as searchService from '~/apiServices/searchServices';
+import * as searchService from '~/services/searchServices';
 
 import styles from './Search.module.scss';
 import classNames from 'classnames/bind';

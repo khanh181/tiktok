@@ -1,7 +1,7 @@
-import routersConfig from '~/config/routes';
+import config from '~/config';
 
 //layouts
-import { HeaderOnly } from '~/components/Layout';
+import { HeaderOnly } from '~/layouts';
 
 //pages
 import Following from '~/pages/Following';
@@ -12,11 +12,11 @@ import Search from '~/pages/Search';
 
 // ! router mà k cần đăng nhập vẫn xem được
 const publicRoute = [
-  { path: routersConfig.home, component: Home },
-  { path: routersConfig.following, component: Following },
-  { path: routersConfig.profile, component: Profile },
-  { path: routersConfig.upload, component: Upload, layout: HeaderOnly },
-  { path: routersConfig.search, component: Search, layout: null },
+  { path: config.routes.home, component: Home },
+  { path: config.routes.following, component: Following },
+  { path: config.routes.profile, component: Profile },
+  { path: config.routes.upload, component: Upload, layout: HeaderOnly },
+  { path: config.routes.search, component: Search, layout: null },
 ];
 
 // ! router mà cần đăng nhập mới xem được

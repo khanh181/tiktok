@@ -25,7 +25,7 @@ import Search from '../Search';
 import Button from '../Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
-import routersConfig from '~/config/routes';
+import config from '~/config';
 
 //! giups bind cái obj styles rồi trả ra med là 1 function là cái cx và dùng cx để dùng class, và tên nó tự biến thành -
 const cx = classNames.bind(styles);
@@ -63,7 +63,7 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
     title: 'Phản hồi và trợ giúp',
-    to: '/feefback',
+    to: '/feedback',
   },
   {
     icon: <FontAwesomeIcon icon={faKeyboard} />,
@@ -104,7 +104,7 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         <div className={cx('logo')}>
-          <Link to={routersConfig.home} className={cx('logo-link')}>
+          <Link to={config.routes.home} className={cx('logo-link')}>
             <img src={images.logo} alt="Tiktok" />
           </Link>
         </div>
