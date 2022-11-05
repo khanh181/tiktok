@@ -21,30 +21,30 @@ const cx = classNames.bind(styles);
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const debounced = useDebounce(searchValue, 500);
+  const debouncedValue = useDebounce(searchValue, 500);
 
   const inputRef = useRef();
 
   useEffect(() => {
     //? dù có nhấn dấu cách thì cũng k bị trả về rỗng
-    if (!debounced.trim()) {
+    if (!debouncedValue.trim()) {
       setSearchResult([]); //? xóa hết kí tự thì cũng xóa hết cái tìm kiếm
       return;
     }
     const fetchApi = async () => {
       setLoading(true);
 
-      const results = await searchService.search(debounced);
+      const results = await searchService.search(debouncedValue);
       setSearchResult(results);
 
       setLoading(false);
     };
 
     fetchApi();
-  }, [debounced]);
+  }, [debouncedValue]);
 
   const handleClear = () => {
     setSearchValue('');

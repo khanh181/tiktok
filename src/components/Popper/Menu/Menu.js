@@ -39,6 +39,25 @@ function Menu({
       );
     });
   };
+  //? logic nhấn quay lại menu cấp trước
+  const handleBack = () => {
+    setHistory((prve) => prve.slice(0, prve.length - 1));
+  };
+
+  const renderResult = (atrrs) => (
+    <div className={cx('menu-lists')} tabIndex="-1" {...atrrs}>
+      <PopperWrapper className={cx('menu-popper')}>
+        {history.length > 1 && (
+          <Header title={current.title} onBack={handleBack} />
+        )}
+        <div className={cx('menu-body')}>{renderItems()}</div>
+      </PopperWrapper>
+    </div>
+  );
+  // ? handleResetToFirstPageMenu
+  const handleResetMenu = () => {
+    setHistory((prve) => prve.slice(0, 1));
+  };
 
   return (
     <Tippy
@@ -47,22 +66,8 @@ function Menu({
       hideOnClick={hideOnClick}
       interactive
       placement="bottom-end"
-      render={(atrrs) => (
-        <div className={cx('menu-lists')} tabIndex="-1" {...atrrs}>
-          <PopperWrapper className={cx('menu-popper')}>
-            {history.length > 1 && (
-              <Header
-                title={current.title}
-                onBack={() => {
-                  setHistory((prve) => prve.slice(0, prve.length - 1));
-                }}
-              />
-            )}
-            <div className={cx('menu-body')}>{renderItems()}</div>
-          </PopperWrapper>
-        </div>
-      )}
-      onHidden={() => setHistory((prve) => prve.slice(0, 1))}
+      render={renderResult}
+      onHidden={handleResetMenu} //? tức là khi nhấn ra ngoài thì cái mene đó về cấp 1
     >
       {children}
     </Tippy>

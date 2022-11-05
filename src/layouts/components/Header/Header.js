@@ -1,5 +1,5 @@
 import Tippy from '@tippyjs/react';
-import { Fragment } from 'react';
+// import { Fragment } from 'react';
 import 'tippy.js/dist/tippy.css';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ import {
   UploadIcon,
 } from '~/components/Icons/Icons';
 import Search from '../Search/Search';
-import Button from '../Button/Button';
+import Button from '../../../components/Button/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image/Image';
 import config from '~/config';
@@ -117,7 +117,7 @@ function Header() {
 
         <div className={cx('actions')}>
           {currentUser ? (
-            <Fragment>
+            <>
               <Tippy delay={(0, 200)} content="Upload Video" placement="bottom">
                 <button className={cx('action-btn')}>
                   <UploadIcon icon={faCloudUpload} />
@@ -138,7 +138,7 @@ function Header() {
                   <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
-            </Fragment>
+            </>
           ) : (
             <>
               <Button text>Upload</Button>
