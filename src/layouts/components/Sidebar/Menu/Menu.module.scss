@@ -1,0 +1,41 @@
+.menu-item {
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 700;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--text-color);
+  transition: background-color 200ms ease-in-out 0s;
+
+  &.active {
+    color: var(--primary);
+
+    .menu-icon {
+      display: none;
+    }
+
+    .menu-active-icon {
+      display: flex;
+    }
+  }
+  &:active {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+.menu-title {
+  margin-left: 10px;
+}
+
+.menu-icon,
+.menu-active-icon {
+  display: flex;
+}
+
+.menu-active-icon {
+  display: none;
+}
