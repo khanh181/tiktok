@@ -1,5 +1,7 @@
 import styles from './AccountPreview.module.scss';
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
+
 import Image from '~/components/Image';
 import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,33 +9,33 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview() {
+function AccountPreview({ data }) {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
-        <Image
-          className={cx('avatar')}
-          src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/38cbe5e5d1b87bbf8636124ce8432d3d~c5_100x100.jpeg?x-expires=1667977200&x-signature=w2EvrbC9AjwNT3xJvW%2BkAvhtqCs%3D"
-          alt=""
-        />
+        <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
         <Button primary> Follow</Button>
       </div>
       <div className={cx('body')}>
         <p className={cx('nickname')}>
-          <strong>giacminhluat</strong>
+          <strong>{data.nickname}</strong>
           <FontAwesomeIcon className={cx('checked')} icon={faCheckCircle} />
         </p>
-        <p className={cx('name')}>Giác Minh Luật</p>
+        <p className={cx('name')}>
+          {data.first_name} {data.last_name}
+        </p>
       </div>
       <p className={cx('information')}>
-        <strong className={cx('followers')}>8.2M</strong>
+        <strong className={cx('followers')}>{data.followers_count}</strong>
         <span className={cx('label')}>Followers</span>
 
-        <strong className={cx('likes')}>1346.6M</strong>
+        <strong className={cx('likes')}>{data.likes_count}</strong>
         <span className={cx('label')}>Likes</span>
       </p>
     </div>
   );
 }
-
+AccountPreview.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 export default AccountPreview;
